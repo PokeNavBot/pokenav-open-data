@@ -5,6 +5,7 @@ from setuptools import setup, find_packages
 VERSION_PATH = os.path.join(os.path.dirname(__file__), 'src', 'pokenav_data', 'VERSION')
 VERSION = open(VERSION_PATH).read()
 
+
 def my_test_suite():
     test_loader = unittest.TestLoader()
     test_suite = test_loader.discover('tests', pattern='test_*.py')
@@ -24,6 +25,11 @@ setup(name='pokenav-data',
         'requests>=2.20.0,<2.21.0',
         'google-cloud-bigquery>=1.7.0,<1.8.0',
       ],
+      entry_points={
+          'console_scripts': [
+              'raid_reports_loader = pokenav_data.raid_reports_loader:main',
+          ],
+      },
       platforms='any',
       test_suite='setup.my_test_suite',
       classifiers=[
