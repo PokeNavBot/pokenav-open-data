@@ -1,4 +1,3 @@
-import pytz
 import logging
 import requests
 import time
@@ -8,7 +7,6 @@ from urllib.parse import urlparse
 
 logger = logging.getLogger(__name__)
 
-FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
 
 def get_args():
     from argparse import ArgumentParser
@@ -48,8 +46,7 @@ def fetch_raid_reports(endpoint, lookback):
     next_fragment = data.get('next')
     if next_fragment:
         o = urlparse(endpoint)
-        o.path = next_fragment
-        next_url = o.geturl()
+        next_url = '{uri.scheme}://{uri.netloc}{fragment}'.format(uri=o, fragment=next_fragment)
         results += fetch_raid_reports(next_url, lookback)
 
     return results
