@@ -58,7 +58,7 @@ def fetch_and_process_research_reports(args):
     logger.info('Read {} records from research stream, processing...'.format(len(research_reports)))
     errors = args.client.insert_rows_json(args.table, research_reports, row_ids=row_ids, skip_invalid_rows=True)
     if errors:
-        logger.error('Error: {}'.format(", ".join(errors)))
+        logger.error('Error: {}'.format(", ".join([str(e) for e in errors])))
 
 
 def main():
