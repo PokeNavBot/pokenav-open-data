@@ -28,6 +28,7 @@ setup(name='pokenav-data',
       entry_points={
           'console_scripts': [
               'raid_reports_loader = pokenav_data.raid_reports_loader:main',
+              'research_reports_loader = pokenav_data.research_reports_loader:main',
           ],
       },
       platforms='any',
